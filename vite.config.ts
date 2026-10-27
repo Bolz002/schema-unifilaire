@@ -1,5 +1,7 @@
 import { defineConfig } from "vite";
 import { viteSingleFile } from "vite-plugin-singlefile";
+import { readFileSync } from "node:fs";
+import { copyStaticAssets } from "./build/copyStaticAssets";
 
 const formatDate = () => {
     const now = new Date();
@@ -13,33 +15,38 @@ const formatDate = () => {
     return `${year}${month}${day}-${hours}${minutes}${seconds}`;
 };
 
-export default defineConfig({
-    define: {
-        BUILD_DATE: JSON.stringify(formatDate()) // Injects current date/time
-    },
-    build: {
-        target: "es2017", // Match your tsconfig.json
-        /*minify: "terser",*/  // Minifies the output
-        //minify: false, // Disable minification for easier debugging
-        outDir: "dist",
-        manifest: false, // We handle this ourselves, not through Vite
-        rollupOptions: {
-            input: {
-                main: 'index.html'
-            },
-            output: {
-                inlineDynamicImports: true, // Forces everything into one file
-                format: "esm",              // Keeps ES module format
-                entryFileNames: "bundle.js" // Generates `bundle.js`
-            },
-            external: [
-                "prop/prop_scripts_js.js",
-                "builddate.js",
-                "pako/pako.min.js",
-                "jsPDF/jspdf.umd.min.js",
-                "jsPDF/print.js"
-            ]
-        }
-    },
-    plugins: [viteSingleFile()]
+// Version de l'app, lue dans package.json (source unique).
+const APP_VERSION = JSON.parse(readFileSync(new URL("./package.json", import.meta.url), "utf-8")).version;
+
+// Mode « single » (npm run build:single) : ancien build en un seul index.html,
+// utile hors ligne en simple fichier, mais pas pour la PWA.
+// BASE_PATH : chemin de publication, par ex. /schema-unifilaire/ pour GitHub Pages ; / en local.
+export default defineConfig(({ mode }) => {
+    const singleFile = mode === "single";
+    return {
+        base: process.env.BASE_PATH || "/",
+        define: {
+            BUILD_DATE: JSON.stringify(formatDate()), // Injects current date/time
+            APP_VERSION: JSON.stringify(APP_VERSION),
+        },
+        build: {
+            target: "es2017", // Match your tsconfig.json
+            outDir: singleFile ? "dist-single" : "dist",
+            emptyOutDir: true,
+            manifest: false, // We handle this ourselves, not through Vite
+            rollupOptions: {
+                input: {
+                    main: 'index.html'
+                },
+                output: singleFile
+                    ? {
+                        inlineDynamicImports: true, // Forces everything into one file
+                        format: "esm",              // Keeps ES module format
+                        entryFileNames: "bundle.js" // Generates `bundle.js`
+                    }
+                    : { format: "esm" }
+            }
+        },
+        plugins: singleFile ? [viteSingleFile(), copyStaticAssets()] : [copyStaticAssets()]
+    };
 });
