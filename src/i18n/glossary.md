@@ -1,8 +1,8 @@
 # Glossaire NL → FR (terminologie RGIE)
 
-Statut : **à valider par Quentin** (⛔ HANDOFF phase 4). Les termes sont déjà appliqués dans `fr.json`. Une correction se fait dans `tools/i18n/build_fr.py`, puis on relance `python tools/i18n/build_fr.py tools/i18n/releve_2026-10-27.json`. Seul l'affichage change : les `.eds` ne sont pas touchés.
+Statut : **validé tel quel par Quentin le 27/10/2026**, y compris les termes marqués ❓. Les termes sont appliqués dans `fr.json`. Une correction se fait dans `tools/i18n/build_fr.py`, puis on relance `python tools/i18n/build_fr.py tools/i18n/releve_2026-10-27.json`. Seul l'affichage change : les `.eds` ne sont pas touchés.
 
-Légende : ✅ terme courant et sûr · ❓ à confirmer (choix d'usage ou de contexte).
+Légende : ✅ terme courant · ❓ choix d'usage ou de contexte (validé avec le reste).
 
 ## Documents et structure
 
