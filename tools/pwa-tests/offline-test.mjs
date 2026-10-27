@@ -36,7 +36,7 @@ result.online = {
 };
 
 // 2) Ouverture d'un exemple pour avoir un schéma en mémoire (autosave IndexedDB)
-await page.getByRole("button", { name: "Verdergaan met deze optie" }).first().click();
+await page.evaluate(() => globalThis.load_example(0));
 await sleep(6000);
 result.online.itemsAfterExample = await page.evaluate(() => globalThis.structure?.data?.length);
 
