@@ -1,3 +1,4 @@
+import { enablePinchZoom } from "../input";
 import { SituationPlan } from "./SituationPlan";
 import { SituationPlanElement } from "./SituationPlanElement";
 import { AdresType, AdresLocation } from "./SituationPlanElement";
@@ -79,6 +80,9 @@ export class SituationPlanView {
                 this.zoomIncrement(-event.deltaY / 2000, canvasx, canvasy);
             }
         }, { passive: false })
+
+        // UniSchema : pinch-zoom et déplacement à deux doigts (src/input/gestures.ts)
+        enablePinchZoom(canvas, this);
 
         // Voegt event handlers toe voor de pijltjestoesten
         this.attachArrowKeys();
@@ -1051,7 +1055,7 @@ export class SituationPlanView {
             const paperPadding = parseFloat(getComputedStyle(this.paper).getPropertyValue('--paperPadding'));
 
             // Loop enkel voor undo-redo, andere acties beneden
-            if (event.ctrlKey) {
+            if (event.ctrlKey || event.metaKey) {
                 switch (event.key) {
                     case 'z':
                         event.preventDefault();
@@ -1081,7 +1085,7 @@ export class SituationPlanView {
 
                 const draggedHalo = this.getDraggedHaloAroundElement(sitPlanElement);
 
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     switch (event.key) {
                         case 'ArrowLeft':
                             this.rotateSelectedBoxes(-90, true);

@@ -4,6 +4,11 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+### Ajouté (phase 3 — ergonomie tactile, première passe)
+- `src/input/gestures.ts` : appui long (doigt ou Pencil) = menu contextuel, y compris sur iPad ; pinch-zoom et déplacement à deux doigts sur le plan de position.
+- `src/input/touch.css` : pas de flash au toucher ni de rebond de page, survols neutralisés sur écran tactile avec retour à l'appui, cibles d'au moins 44 px et champs à 16 px quand le pointeur est un doigt, respect de « réduire les animations ».
+- Raccourcis ⌘ (Magic Keyboard) en plus de Ctrl sur le plan de position (annuler/rétablir, rotation).
+
 ### Ajouté (phase 2 — PWA)
 - Nom de l'app **UniSchema**, défini dans `src/config/app.config.ts` (injecté dans le manifest et `index.html`).
 - Icône originale « éclair » (`tools/generate_icons.py` → `public/icons/`), maskable et apple-touch-icon.

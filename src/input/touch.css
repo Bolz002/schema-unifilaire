@@ -1,0 +1,83 @@
+/* Base tactile iPad / Android, en surcouche des styles d'origine (css/styles.css reste intact).
+   Les règles sont conditionnées par les capacités (hover, pointer), jamais par le type d'appareil. */
+
+html {
+    -webkit-tap-highlight-color: transparent; /* pas de flash gris au toucher */
+    -webkit-text-size-adjust: 100%;           /* pas de grossissement du texte en paysage */
+    overscroll-behavior: none;                /* pas de « tirer pour actualiser » ni de rebond de page */
+}
+
+/* Contrôles : clic immédiat (pas d'attente de double-tap) et pas de sélection de leur libellé */
+button, a, select, label, summary, [role="button"],
+input[type="checkbox"], input[type="radio"],
+ul#minitabs a, .icon, .rounded-button, .context-menu-item {
+    touch-action: manipulation;
+}
+
+button, ul#minitabs a, .icon, .rounded-button, .context-menu-item,
+#outerdiv .box, #outerdiv .boxlabel {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none; /* pas de bulle copier/partager sur appui long */
+}
+
+/* Plan de position : le navigateur garde le défilement à un doigt, le pinch est géré par src/input/gestures.ts */
+#canvas {
+    touch-action: pan-x pan-y;
+    overscroll-behavior: contain;
+}
+
+/* Survol : sur un écran tactile, le :hover reste « collé » après un toucher. On neutralise les survols
+   d'origine et on donne à la place un retour au moment de l'appui (:active). */
+@media (hover: none) {
+    ul#minitabs a:hover { border-color: #e8e8e8; color: #555565; }
+    ul#minitabs a#current:hover { border-color: #F60; color: #06F; }
+    .icon:hover { background-color: transparent; }
+    .context-menu-item:hover { background-color: transparent; }
+    .rounded-button:hover { background-color: #3399FF; }
+
+    .icon:active, .context-menu-item:active { background-color: #ccc; }
+    .rounded-button:active { background-color: #06F; }
+}
+
+/* Doigt ou stylet : cibles d'au moins 44 × 44 pt et champs à 16 px (sinon Safari zoome sur le champ) */
+@media (pointer: coarse) {
+    input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+        font-size: 16px;
+        min-height: 36px;
+    }
+    button, .rounded-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    input[type="checkbox"], input[type="radio"] {
+        width: 24px;
+        height: 24px;
+        margin: 10px; /* zone touchable de 44 px autour d'une case de 24 px */
+    }
+    ul#minitabs a {
+        display: inline-block;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .context-menu-item {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    .icon {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    /* Le bandeau d'outils a une hauteur fixe (--ribbon-height : 68 px) et empile deux lignes
+       (« Pagina » + boutons de page) : on n'y impose pas les 44 px, ses icônes restent les cibles principales. */
+    #ribbon button {
+        min-height: 0;
+        min-width: 0;
+    }
+}
+
+/* Moins d'animations si l'utilisateur l'a demandé au système */
+@media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

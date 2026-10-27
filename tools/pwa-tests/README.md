@@ -7,6 +7,7 @@ MSYS_NO_PATHCONV=1 BASE_PATH=/schema-unifilaire/ npm run build
 MSYS_NO_PATHCONV=1 npx vite preview --port 4173 --base /schema-unifilaire/
 node tools/pwa-tests/offline-test.mjs          # précache, rechargement et réouverture hors ligne
 node tools/pwa-tests/update-test.mjs "$(pwd)"  # bandeau de mise à jour (relance un build)
+node tools/pwa-tests/touch-test.mjs http://localhost:4173/ .  # tablette tactile émulée : appui long, pinch, cibles
 ```
 
 Prérequis : `playwright-core` (installé hors du dépôt pour l'instant, par ex. `npm i -g playwright-core`) et Microsoft Edge.

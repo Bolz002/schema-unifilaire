@@ -10,3 +10,4 @@
 | 2026-10-27 | 2 | Stockage persistant | Edge headless | Refusé par le navigateur (attendu hors installation) ; à revérifier sur iPad installé |
 | 2026-10-27 | 2 | Lighthouse installabilité | — | **Non fait** ; navigateur intégré Claude incompatible avec les service workers |
 | 2026-10-27 | test tablette | `tailscale serve --bg --https=8443 4173` + `offline-test.mjs https://desktop-bol.tail7507a1.ts.net:8443/` | Edge headless sur le PC, certificat Tailscale valide | OK : SW activé, hors ligne et réouverture OK. Port 443 occupé par http.sys (PID 4), d'où 8443 |
+| 2026-10-27 | 3 | `touch-test.mjs` : écran tactile émulé 1180×820 (pointer: coarse, hover: none) | Edge headless, CDP Input.dispatchTouchEvent | OK : 0 cible < 24 px sur 90, champs à 16 px, appui long 700 ms → 1 contextmenu, appui court → 0, pinch ×3 → zoom ×3. Défaut corrigé : boutons de page débordant du bandeau (#ribbon). **À confirmer sur tablette réelle** |
