@@ -12,8 +12,8 @@ export const APP_CONFIG = {
     /** Couleurs du manifest ; themeColor = fond de l'icône. */
     themeColor: "#1e3a5f",
     backgroundColor: "#ffffff",
-    /** Code source du fork (obligation GPLv3, écran « À propos »). À remplacer par l'URL du fork. */
-    sourceUrl: "https://github.com/igoethal/eendraadschema",
+    /** Code source du fork (obligation GPLv3, écran « À propos »). */
+    sourceUrl: "https://github.com/Bolz002/schema-unifilaire",
     upstreamUrl: "https://github.com/igoethal/eendraadschema",
     upstreamAuthor: "Ivan Goethals",
     modifiedBy: "Quentin Bolsée, 2026",
