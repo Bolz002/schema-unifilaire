@@ -26,6 +26,7 @@ import { changelog } from "./changelog";
 import "../css/all.css";
 import { initPWA } from "./pwa";
 import { initTouchInput } from "./input";
+import { initFileLaunch } from "./pwa/fileLaunch";
 
 declare const BUILD_DATE: string;
 console.log(BUILD_DATE);
@@ -817,7 +818,7 @@ let recoveryAvailable = false
 let lastSavedStr:string|null = null;
 let lastSavedInfo:any = null;
 
-(async () => {   
+const startupDone = (async () => {   
     [lastSavedStr, lastSavedInfo] = await globalThis.autoSaver.loadLastSaved();
     if ((lastSavedStr != null) /* && (lastSavedInfo.recovery == true) */ ) recoveryAvailable = true;
 })().then(() => {
@@ -846,6 +847,9 @@ let lastSavedInfo:any = null;
     } 
     globalThis.autoSaver.start();    
 });
+
+// UniSchema : ouverture d'un .eds par double-clic, une fois l'autosave récupéré (sinon il écraserait le fichier)
+startupDone.then(() => initFileLaunch());
 
 
 

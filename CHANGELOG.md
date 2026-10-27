@@ -4,6 +4,10 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+### Ajouté (PC Windows)
+- Ouverture d'un `.eds` par double-clic quand UniSchema est installé (manifest `file_handlers`, `launch_handler` focus-existing, `src/pwa/fileLaunch.ts`) ; confirmation si travail non enregistré ; « Opslaan » réécrit dans le même fichier.
+- Guide `docs/INSTALL_PC.md`, lanceur du serveur local à la racine du projet.
+
 ### Ajouté (phase 3 — ergonomie tactile, première passe)
 - `src/input/gestures.ts` : appui long (doigt ou Pencil) = menu contextuel, y compris sur iPad ; pinch-zoom et déplacement à deux doigts sur le plan de position.
 - `src/input/touch.css` : pas de flash au toucher ni de rebond de page, survols neutralisés sur écran tactile avec retour à l'appui, cibles d'au moins 44 px et champs à 16 px quand le pointeur est un doigt, respect de « réduire les animations ».

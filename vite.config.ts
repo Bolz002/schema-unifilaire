@@ -45,6 +45,10 @@ const pwaPlugin = () => VitePWA({
         start_url: ".",
         scope: ".",
         theme_color: APP_CONFIG.themeColor,
+        // PC (Edge/Chrome) : double-clic sur un .eds → UniSchema (voir src/pwa/fileLaunch.ts).
+        // « focus-existing » : le fichier s'ouvre dans la fenêtre déjà ouverte, avec confirmation si travail non enregistré.
+        file_handlers: [{ action: "./", accept: { "application/x-eds": [".eds"] } }],
+        launch_handler: { client_mode: ["focus-existing", "auto"] },
         background_color: APP_CONFIG.backgroundColor,
         icons: [
             { src: "icons/icon-192.png", sizes: "192x192", type: "image/png" },

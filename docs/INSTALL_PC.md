@@ -27,11 +27,22 @@ Avec Chrome : menu **⋮ → Caster, enregistrer et partager → Installer la pa
 - Les schémas sont enregistrés automatiquement dans le profil Edge du PC. Exporter régulièrement les `.eds` (menu Bestand) vers OneDrive pour la sauvegarde.
 - Raccourcis clavier : Ctrl+Z / Ctrl+Y (annuler / rétablir), flèches pour déplacer un symbole, Ctrl+flèches pour le tourner, Ctrl+molette pour zoomer sur le plan de position.
 
-## 4. Mises à jour
+## 4. Ouvrir un .eds par double-clic
+
+Une fois UniSchema installé, Windows le propose pour les fichiers `.eds` :
+
+1. Double-cliquer sur un `.eds` dans l'Explorateur (ou clic droit → **Ouvrir avec → UniSchema**). La première fois, Edge demande l'autorisation : cocher « Toujours autoriser » puis **Ouvrir**.
+2. Si Windows ouvre encore un autre programme : clic droit sur le `.eds` → **Ouvrir avec → Choisir une autre application → UniSchema** → cocher « Toujours utiliser cette application ».
+3. Le fichier s'ouvre dans la fenêtre UniSchema déjà ouverte. Si le schéma en cours a des modifications non enregistrées, UniSchema demande confirmation avant de le remplacer.
+4. **Opslaan** (Bestand) réécrit directement dans ce même fichier.
+
+Si UniSchema avait été installé avant cette fonction, le désinstaller puis le réinstaller pour que Windows enregistre l'association.
+
+## 5. Mises à jour
 
 Démarrer le serveur local (étape 1) après une nouvelle version, puis ouvrir UniSchema : le bandeau **« Nouvelle version disponible → Recharger »** apparaît. Rien n'est rechargé sans votre accord.
 
-## 5. À savoir
+## 6. À savoir
 
 - Les schémas sont liés à l'**adresse** depuis laquelle l'app a été installée. Après la publication sur GitHub Pages (`https://bolz002.github.io/schema-unifilaire/`), la version publiée aura ses propres données : exporter les `.eds` depuis la version locale, puis les rouvrir dans la version publiée.
 - Désinstaller : dans UniSchema, menu **⋯ → Désinstaller**, ou Paramètres Windows → Applications.
