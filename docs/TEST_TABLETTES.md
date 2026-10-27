@@ -2,7 +2,7 @@
 
 L'app est servie par le PC. Rien n'est publié sur Internet. La même app (PWA) fonctionne sur Android et iPad.
 
-Le mode hors ligne (service worker) exige une adresse **HTTPS**. Le plus simple est **Tailscale**, déjà installé sur le PC : il donne l'adresse privée `https://desktop-bol.tail7507a1.ts.net`, visible seulement par vos appareils.
+Le mode hors ligne (service worker) exige une adresse **HTTPS**. Le plus simple est **Tailscale**, déjà installé sur le PC : il donne l'adresse privée `https://desktop-bol.tail7507a1.ts.net:8443`, visible seulement par vos appareils.
 
 ## 1. Sur le PC (à chaque séance de test)
 
@@ -15,16 +15,18 @@ Cette commande reconstruit l'app et la sert sur le port 4173. Si Windows demande
 Activation de l'adresse HTTPS Tailscale (une seule fois, la règle reste active) :
 
 ```bash
-tailscale serve --bg 4173
+tailscale serve --bg --https=8443 4173
 ```
 
-Pour l'arrêter après les tests : `tailscale serve --https=443 off`.
+Pour l'arrêter après les tests : `tailscale serve --https=8443 off`.
+
+Le port 443 du PC est déjà pris par le service HTTP de Windows (http.sys, certificat auto-signé), d'où le port 8443. Vite n'accepte que les noms `*.ts.net` en plus de localhost (`preview.allowedHosts` dans `vite.config.ts`).
 
 ## 2. Tablette Android (Chrome)
 
 ### Méthode A — Tailscale (recommandée : HTTPS, hors ligne testable)
 1. Installer **Tailscale** depuis le Play Store et se connecter avec le **même compte** que le PC (quentin.bolsee@gmail.com).
-2. Dans Chrome, ouvrir `https://desktop-bol.tail7507a1.ts.net`.
+2. Dans Chrome, ouvrir `https://desktop-bol.tail7507a1.ts.net:8443`.
 3. Menu ⋮ → **Installer l'application** (ou **Ajouter à l'écran d'accueil** → Installer).
 4. Lancer UniSchema depuis l'icône éclair : l'app s'ouvre en plein écran.
 
@@ -38,7 +40,7 @@ Pour l'arrêter après les tests : `tailscale serve --https=443 off`.
 
 Safari n'a pas de réglage équivalent : seule la méthode **Tailscale** permet le mode hors ligne avant publication.
 1. Installer **Tailscale** depuis l'App Store et se connecter avec le même compte.
-2. Dans **Safari** (pas Chrome), ouvrir `https://desktop-bol.tail7507a1.ts.net`.
+2. Dans **Safari** (pas Chrome), ouvrir `https://desktop-bol.tail7507a1.ts.net:8443`.
 3. Toucher **Partager** (carré avec une flèche) → **Sur l'écran d'accueil** → vérifier le nom « UniSchema » → **Ajouter**.
 4. Lancer l'app depuis l'icône.
 

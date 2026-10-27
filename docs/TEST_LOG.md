@@ -9,3 +9,4 @@
 | 2026-10-27 | 2 | `update-test.mjs` : app contrôlée par le SW, nouveau build, vérification de mise à jour | idem | OK : bandeau affiché, pas de rechargement automatique, « Recharger » charge le nouveau bundle. Défaut corrigé : bandeau non cliquable quand une fenêtre de l'app est ouverte (`pointer-events`) |
 | 2026-10-27 | 2 | Stockage persistant | Edge headless | Refusé par le navigateur (attendu hors installation) ; à revérifier sur iPad installé |
 | 2026-10-27 | 2 | Lighthouse installabilité | — | **Non fait** ; navigateur intégré Claude incompatible avec les service workers |
+| 2026-10-27 | test tablette | `tailscale serve --bg --https=8443 4173` + `offline-test.mjs https://desktop-bol.tail7507a1.ts.net:8443/` | Edge headless sur le PC, certificat Tailscale valide | OK : SW activé, hors ligne et réouverture OK. Port 443 occupé par http.sys (PID 4), d'où 8443 |

@@ -68,6 +68,8 @@ export default defineConfig(({ mode }) => {
     const singleFile = mode === "single";
     return {
         base: process.env.BASE_PATH || "/",
+        // Test sur tablette via « tailscale serve » (adresse privée *.ts.net) : voir docs/TEST_TABLETTES.md
+        preview: { allowedHosts: [".ts.net"] },
         define: {
             BUILD_DATE: JSON.stringify(formatDate()), // Injects current date/time
             APP_VERSION: JSON.stringify(APP_VERSION),
