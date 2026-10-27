@@ -24,9 +24,11 @@ import { importExportUsingFileAPI } from "./importExport/importExport";
 import { changelog } from "./changelog";
 
 import "../css/all.css";
+import { initPWA } from "./pwa";
 
 declare const BUILD_DATE: string;
 console.log(BUILD_DATE);
+initPWA();
 
 // Global mutable variables
 

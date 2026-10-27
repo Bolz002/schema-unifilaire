@@ -1,0 +1,59 @@
+/* Éléments ajoutés par la PWA (bandeau de mise à jour, indicateur hors ligne). */
+
+.pwa-banner {
+    position: fixed;
+    left: 50%;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 2147483647; /* au-dessus des fenêtres de l'app (jusqu'à 999999999 dans styles.css) */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #1e3a5f;
+    color: #ffffff;
+    font: 15px/1.3 system-ui, -apple-system, sans-serif;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    /* Dialog.ts met body en pointer-events: none pendant une fenêtre : le bandeau doit rester cliquable */
+    pointer-events: auto;
+}
+
+.pwa-banner button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 6px;
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.pwa-banner-action {
+    background: #ffc400;
+    color: #1e3a5f;
+    font-weight: 600;
+}
+
+.pwa-banner-close {
+    background: transparent;
+    color: #ffffff;
+}
+
+.pwa-offline {
+    position: fixed;
+    top: calc(4px + env(safe-area-inset-top));
+    right: calc(8px + env(safe-area-inset-right));
+    z-index: 2147483647; /* au-dessus des fenêtres de l'app (jusqu'à 999999999 dans styles.css) */
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: #6b7280;
+    color: #ffffff;
+    font: 12px/1.4 system-ui, -apple-system, sans-serif;
+    pointer-events: none;
+}
+
+.pwa-offline[hidden] {
+    display: none;
+}

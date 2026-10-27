@@ -28,7 +28,9 @@ export function copyStaticAssets(assets: string[] = STATIC_ASSETS): Plugin {
             rootDir = config.root;
             outDir = resolve(config.root, config.build.outDir);
         },
-        closeBundle() {
+        // writeBundle (et non closeBundle) : les fichiers doivent exister avant que
+        // vite-plugin-pwa ne liste dist/ pour le précache du service worker.
+        writeBundle() {
             for (const asset of assets) {
                 const source = resolve(rootDir, asset);
                 if (!existsSync(source)) {
