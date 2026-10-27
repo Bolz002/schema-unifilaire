@@ -4,6 +4,16 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+### Ajouté (phase 4 — interface en français)
+- Couche de traduction à l'affichage (`src/i18n/`) : les textes néerlandais d'origine servent de clés, le code d'origine et les valeurs des `.eds` ne changent pas (fichiers identiques FR/NL, vérifié).
+- Dictionnaire `src/i18n/fr.json` (421 textes, 10 motifs) construit par `tools/i18n/build_fr.py` à partir d'un relevé de tous les écrans, des 48 types d'éléments et de toutes les protections.
+- Sélecteur de langue FR / NL en haut à droite (FR par défaut).
+- En-têtes du PDF traduits ; glossaire RGIE `src/i18n/glossary.md` (à valider).
+
+### Corrigé
+- Indicateur « Hors ligne » inopérant : `main.ts` reconstruit le body au démarrage (`innerHTML +=`), l'élément est maintenant recherché à chaque mise à jour.
+- Menu : sélection d'un onglet par sa position et non par son texte (`TopMenu.selectMenuItemByName`), nécessaire une fois traduit.
+
 ### Ajouté (PC Windows)
 - Ouverture d'un `.eds` par double-clic quand UniSchema est installé (manifest `file_handlers`, `launch_handler` focus-existing, `src/pwa/fileLaunch.ts`) ; confirmation si travail non enregistré ; « Opslaan » réécrit dans le même fichier.
 - Guide `docs/INSTALL_PC.md`, lanceur du serveur local à la racine du projet.

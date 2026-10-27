@@ -460,7 +460,7 @@ export function SituationPlanView_ElementPropertiesPopup(sitplanElement: Situati
 
     adresInput.onclick = () => {
         Array.from(selectAdresType.options).forEach(option => {
-            if (option.text === "Handmatig") {
+            if ((option.getAttribute("data-i18n-nl") ?? option.text) === "Handmatig") { // UniSchema : texte d'origine si l'option est traduite
                 option.selected = true;
             }
         });

@@ -1,3 +1,5 @@
+import { t } from "../i18n"; // UniSchema : en-têtes du PDF traduits
+
 // Import jsPDF types if available (otherwise use 'any')
 declare global {
     interface Window {
@@ -232,32 +234,32 @@ export function printPDF(
             doc.setFont("helvetica", "bold");
             doc.setFontSize(fontSize);
 
-            doc.text("Getekend met https://eendraadschema.goethals-jacobs.be", 
+            doc.text(t("Getekend met https://eendraadschema.goethals-jacobs.be"), 
                      startx + 2, // Leave 2mm at the left of the drawn by text
                      paperdetails.paperheight - paperdetails.paper_margin - (paperdetails.drawnby_box_height - textHeight) / 2 - textHeight / 6);
 
             let page = iter + 1;
             let maxpages = print_table.pages.length + sitplanprint.numpages;
 
-            doc.text("pagina. " + page + "/" + maxpages,
+            doc.text(t("pagina") + ". " + page + "/" + maxpages,
                      startx + 3 * paperdetails.owner_box_width + 2, //Leave 2mm at the left 
                      paperdetails.paperheight - paperdetails.paper_margin - paperdetails.drawnby_box_height - paperdetails.owner_box_height - textHeight / 6 + textHeight + 1.5);
 
-            let pagename = iter < print_table.pages.length ? "Eendraadschema" : "Situatieschema";
+            let pagename = iter < print_table.pages.length ? t("Eéndraadschema") : t("Situatieschema");
 
             doc.text(pagename, 
                      startx + 3 * paperdetails.owner_box_width + 2, //Leave 2mm at the left 
                      paperdetails.paperheight - paperdetails.paper_margin - paperdetails.drawnby_box_height - paperdetails.owner_box_height - textHeight / 6 + textHeight * (1 + 1.2) + 1.5);
             
-            doc.text(htmlToPDFlines(doc, "Erkend Organisme"), 
+            doc.text(htmlToPDFlines(doc, t("Erkend Organisme")), 
                      startx + 2,
                      paperdetails.paperheight - paperdetails.paper_margin - paperdetails.drawnby_box_height - paperdetails.owner_box_height - textHeight / 6 + textHeight + 1.5);
 
-            doc.text(htmlToPDFlines(doc, "Plaats van de elektrische installatie"), 
+            doc.text(htmlToPDFlines(doc, t("Plaats van de elektrische installatie")), 
                      startx + paperdetails.owner_box_width + 2, 
                      paperdetails.paperheight - paperdetails.paper_margin - paperdetails.drawnby_box_height - paperdetails.owner_box_height - textHeight / 6 + textHeight + 1.5);
 
-            doc.text(htmlToPDFlines(doc, "Installateur"), 
+            doc.text(htmlToPDFlines(doc, t("Installateur")), 
                      startx + 2 * paperdetails.owner_box_width + 2, 
                      paperdetails.paperheight - paperdetails.paper_margin - paperdetails.drawnby_box_height - paperdetails.owner_box_height - textHeight / 6 + textHeight + 1.5);
 

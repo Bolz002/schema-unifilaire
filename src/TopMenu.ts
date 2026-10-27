@@ -55,7 +55,7 @@ export class TopMenu {
     public selectMenuItemByName(name: string) { 
         const item = this.menuItems.find(menuItem => menuItem.name === name); 
         if (item) { 
-            const aElement = Array.from(this.ulElement.querySelectorAll('a')).find(a => a.innerText === name); 
+            const aElement = this.ulElement.querySelectorAll('a')[this.menuItems.indexOf(item)]; // UniSchema : par position, le texte affiché peut être traduit
             if (aElement) { 
                 this.selectItem(aElement as HTMLAnchorElement); 
                 item.callback(); 

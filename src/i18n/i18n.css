@@ -1,0 +1,36 @@
+/* Sélecteur de langue FR / NL, en haut à droite de la barre de menu. */
+
+.i18n-switch {
+    position: fixed;
+    top: calc(4px + env(safe-area-inset-top));
+    right: calc(8px + env(safe-area-inset-right));
+    z-index: 2147483646; /* au-dessus des fenêtres de l'app, sous le bandeau de mise à jour */
+    pointer-events: auto; /* Dialog.ts désactive les clics sur le body pendant une fenêtre */
+    display: flex;
+    border: 1px solid #c8c8c8;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.i18n-switch button {
+    border: 0;
+    padding: 2px 8px;
+    background: transparent;
+    color: #555565;
+    font: 600 12px/1.6 system-ui, -apple-system, sans-serif;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.i18n-switch button[aria-pressed="true"] {
+    background: #1e3a5f;
+    color: #ffffff;
+}
+
+@media (pointer: coarse) {
+    .i18n-switch button {
+        min-width: 44px;
+        min-height: 32px; /* la barre de menu est basse : 32 px + bordure, cible élargie par le padding */
+    }
+}

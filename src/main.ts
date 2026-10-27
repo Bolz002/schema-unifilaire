@@ -26,12 +26,14 @@ import { changelog } from "./changelog";
 import "../css/all.css";
 import { initPWA } from "./pwa";
 import { initTouchInput } from "./input";
+import { initI18n } from "./i18n";
 import { initFileLaunch } from "./pwa/fileLaunch";
 
 declare const BUILD_DATE: string;
 console.log(BUILD_DATE);
 initPWA();
 initTouchInput();
+initI18n();
 
 // Global mutable variables
 

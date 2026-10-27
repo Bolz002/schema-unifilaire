@@ -5,7 +5,8 @@
     "target": "es2017",
     "lib": ["es2017", "dom"],
     "moduleResolution": "node",
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/global.d.ts",
