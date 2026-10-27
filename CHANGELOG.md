@@ -4,6 +4,15 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+## [0.2.0] - 2026-10-27
+
+Première version publiée : https://bolz002.github.io/schema-unifilaire/
+
+### Ajouté (publication)
+- Écran « À propos » (bouton « i » en haut à droite) : version, © Ivan Goethals, modifications, licence GPL v3, lien vers le code source.
+- Déploiement automatique sur GitHub Pages à chaque push sur `main` (`.github/workflows/deploy.yml`).
+- Guide `docs/INSTALL_ANDROID.md`.
+
 ### Modifié (design)
 - Thème inspiré d'iPadOS/macOS (`src/theme/apple.css`, en surcouche, styles d'origine intacts) : police système, fond groupé, cartes blanches, onglets en contrôle segmenté, barres translucides, icônes au trait monochromes (remplacent émojis et PNG), boutons de l'arborescence teintés, pastilles d'état d'enregistrement, champs et listes arrondis, fenêtres et menu contextuel façon macOS ; transparence et contraste adaptés aux réglages d'accessibilité.
 - Sélecteur FR/NL au même style que les onglets. Captures dans `docs/captures/`.

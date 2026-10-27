@@ -1,11 +1,6 @@
-/* Sélecteur de langue FR / NL, en haut à droite de la barre de menu. */
+/* Sélecteur de langue FR / NL, placé dans la zone en haut à droite (src/ui/corner.ts). */
 
 .i18n-switch {
-    position: fixed;
-    top: calc(4px + env(safe-area-inset-top));
-    right: calc(10px + env(safe-area-inset-right));
-    z-index: 2147483646; /* au-dessus des fenêtres de l'app, sous le bandeau de mise à jour */
-    pointer-events: auto; /* Dialog.ts désactive les clics sur le body pendant une fenêtre */
     display: flex;
     gap: 2px;
     height: 32px;

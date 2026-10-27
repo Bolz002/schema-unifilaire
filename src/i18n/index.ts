@@ -5,6 +5,7 @@ import { createLogger } from "../utils/logger";
 import { DomTranslator, translateWithEdges } from "./domTranslator";
 import * as dictionnaireFr from "./fr.json";
 import "./i18n.css";
+import { getCorner } from "../ui/corner";
 
 const log = createLogger("i18n");
 
@@ -78,7 +79,7 @@ function addLanguageSwitch(current: Language): void {
         button.setAttribute("aria-pressed", String(language === current));
         container.appendChild(button);
     }
-    document.body.appendChild(container);
+    getCorner().appendChild(container);
 
     // Écoute au niveau du document : main.ts reconstruit le body (innerHTML +=) au démarrage,
     // ce qui recrée le sélecteur sans ses écouteurs.

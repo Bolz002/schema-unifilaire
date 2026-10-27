@@ -30,12 +30,14 @@ import { initTouchInput } from "./input";
 import { initI18n } from "./i18n";
 import { initFileLaunch } from "./pwa/fileLaunch";
 import { installLlmApi } from "./llm";
+import { initAboutButton } from "./pwa/about";
 
 declare const BUILD_DATE: string;
 console.log(BUILD_DATE);
 initPWA();
 initTouchInput();
 initI18n();
+initAboutButton();
 
 // Global mutable variables
 
