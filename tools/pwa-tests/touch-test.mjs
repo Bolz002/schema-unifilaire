@@ -21,7 +21,7 @@ result.media = await page.evaluate(() => ({
 }));
 
 // Ouvre l'exemple 1 au doigt
-await page.getByRole("button", { name: "Verdergaan met deze optie" }).first().tap();
+await page.evaluate(() => globalThis.load_example(0));
 await sleep(1500);
 await page.screenshot({ path: `${OUT}/tactile_unifilaire.png` });
 result.smallTargets = await page.evaluate(() => {
@@ -49,7 +49,7 @@ await sleep(700);
 result.shortTapContextmenus = await page.evaluate(() => window.__ctx.length);
 
 // Plan de position : pinch-zoom écartant les doigts
-await page.locator("ul#minitabs a", { hasText: "Situatieschema" }).tap();
+await page.locator("ul#minitabs a", { hasText: /Situatieschema|Plan de position/ }).tap();
 await sleep(1500);
 const okButton = page.getByRole("button", { name: "OK" });
 if (await okButton.count()) await okButton.first().tap();

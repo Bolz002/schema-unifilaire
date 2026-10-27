@@ -1,0 +1,457 @@
+/* Thème UniSchema inspiré des interfaces Apple (iPadOS / macOS), en surcouche de css/styles.css.
+   Principes : police système, fond groupé gris clair, contenus sur cartes blanches, une seule couleur
+   d'accent, séparateurs fins, barres translucides, icônes au trait monochromes, retour immédiat à l'appui.
+   Aucune règle ne change la mise en page de l'app d'origine (hauteurs --menu-height / --ribbon-height conservées). */
+
+:root {
+    color-scheme: light;
+    --us-bg: #f2f2f7;                       /* fond groupé */
+    --us-surface: #ffffff;                  /* cartes */
+    --us-fill: rgba(118, 118, 128, 0.12);   /* contrôles neutres */
+    --us-fill-strong: rgba(118, 118, 128, 0.2);
+    --us-separator: rgba(60, 60, 67, 0.18);
+    --us-label: #1c1c1e;
+    --us-secondary: #6e6e73;
+    --us-accent: #007aff;
+    --us-accent-tint: rgba(0, 122, 255, 0.12);
+    --us-red: #ff3b30;
+    --us-red-tint: rgba(255, 59, 48, 0.12);
+    --us-green: #248a3d;
+    --us-green-tint: rgba(52, 199, 89, 0.14);
+    --us-orange: #c93400;
+    --us-orange-tint: rgba(255, 149, 0, 0.14);
+    --us-yellow-tint: rgba(255, 204, 0, 0.16);
+    --us-radius: 12px;
+    --us-radius-small: 8px;
+    --us-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 1px rgba(0, 0, 0, 0.03);
+    --us-shadow-raised: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+    --us-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --us-press: 100ms ease-out;
+}
+
+/* ---------- Base ---------- */
+
+html { background-color: var(--us-bg); }
+
+body, button, input, select, textarea {
+    font-family: var(--us-font);
+}
+
+body {
+    color: var(--us-label);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+p { line-height: 1.45; }
+h1, h2, h3 { color: var(--us-label); letter-spacing: -0.01em; }
+h2 { font-size: 20px; font-weight: 600; }
+h3 { font-size: 17px; font-weight: 600; }
+a { color: var(--us-accent); }
+
+/* ---------- Barre de menu : translucide, onglets en contrôle segmenté ---------- */
+
+#topmenu {
+    background-color: rgba(249, 249, 251, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--us-separator);
+    padding: 0 10px;
+}
+
+ul#minitabs {
+    height: 32px;
+    margin-top: 4px;
+    padding: 2px;
+    display: inline-flex;
+    gap: 2px;
+    background: var(--us-fill);
+    border-radius: 9px;
+    font-weight: 500;
+}
+
+ul#minitabs li, ul#minitabs li.menu-item { margin: 0; display: flex; height: 100%; }
+
+ul#minitabs a {
+    display: flex;
+    align-items: center;
+    height: 100%; /* toute la hauteur du contrôle segmenté : 28 px de cible */
+    padding: 0 12px !important;
+    border: 0;
+    border-radius: 7px;
+    color: var(--us-label);
+    font-size: 13px;
+    transition: background-color var(--us-press), box-shadow var(--us-press);
+}
+
+ul#minitabs a#current {
+    background: var(--us-surface);
+    color: var(--us-label);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+}
+
+ul#minitabs a:hover { border-color: transparent; color: var(--us-label); }
+@media (hover: hover) and (pointer: fine) {
+    ul#minitabs a:not(#current):hover { background: rgba(255, 255, 255, 0.5); }
+}
+ul#minitabs a:active { transform: scale(0.97); }
+
+/* ---------- Barre d'outils (ribbon) ---------- */
+
+#ribbon, #left-icons, #right-icons {
+    background-color: rgba(255, 255, 255, 0.86);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--us-separator);
+    color: var(--us-label);
+}
+
+#ribbon { font-size: 12px; }
+
+.icon {
+    min-width: 56px;
+    margin: 0 0 0 4px;
+    padding: 5px 6px 4px;
+    border-radius: 10px;
+    color: var(--us-accent);
+    transition: background-color var(--us-press), transform var(--us-press);
+}
+
+.icon:hover { background-color: transparent; }
+@media (hover: hover) and (pointer: fine) {
+    .icon:hover { background-color: var(--us-fill); }
+}
+.icon:active { background-color: var(--us-fill-strong); transform: scale(0.96); }
+
+.icon-text {
+    color: var(--us-label);
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+/* Icônes au trait (style SF Symbols), teintées par la couleur d'accent via un masque */
+.icon .icon-image {
+    width: 26px;
+    height: 26px;
+    font-size: 0 !important;
+    color: transparent;
+    background-color: var(--us-accent);
+    -webkit-mask: var(--us-icon) center / 24px 24px no-repeat;
+    mask: var(--us-icon) center / 24px 24px no-repeat;
+    filter: none !important;
+    opacity: 1 !important;
+}
+
+/* Les icônes PNG d'origine (annuler / rétablir) sont remplacées par des tracés équivalents */
+.icon img.icon-image[src$="undo.png"] { content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23007aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>'); background: none; -webkit-mask: none; mask: none; }
+.icon img.icon-image[src$="redo.png"] { content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23007aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/></svg>'); background: none; -webkit-mask: none; mask: none; }
+.icon[style*="opacity"] { filter: grayscale(1) opacity(0.4) !important; }
+
+#button_Add               { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 11v6M9 14h6"/></svg>'); }
+#button_Add_electroItem   { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>'); }
+#button_Add_customItem    { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>'); }
+#button_Delete            { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 3h4M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>'); }
+#button_edit              { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>'); }
+#sendBack                 { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="11" height="11" rx="2"/><path d="M10 17v2a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2h-2"/></svg>'); }
+#bringFront               { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="10" width="11" height="11" rx="2"/><path fill="none" d="M14 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></svg>'); }
+#button_zoomin            { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8M10.5 7.5v6M7.5 10.5h6"/></svg>'); }
+#button_zoomout           { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8M7.5 10.5h6"/></svg>'); }
+#button_zoomToFit         { --us-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>'); }
+
+/* Enregistrement : pastilles d'état au lieu des cadres rouge et vert */
+.highlight-warning-big, .highlight-ok-big, .highlight-warning {
+    border: 0 !important;
+    border-radius: 10px;
+    padding: 6px 10px !important;
+    font-size: 12px;
+    line-height: 1.35;
+    transition: transform var(--us-press);
+}
+.highlight-warning-big, .highlight-warning { background-color: var(--us-orange-tint); color: var(--us-orange); }
+.highlight-ok-big { background-color: var(--us-green-tint); color: var(--us-green); }
+.highlight-warning-big:active, .highlight-ok-big:active { transform: scale(0.98); }
+.highlight-warning-big .icon-image, .highlight-ok-big .icon-image {
+    width: 22px; height: 22px; font-size: 0 !important; filter: none !important; opacity: 1 !important;
+    background-color: currentColor;
+    -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg>') center / 20px 20px no-repeat;
+    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 17v2a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/></svg>') center / 20px 20px no-repeat;
+}
+
+/* ---------- Champs ---------- */
+
+input[type="text"], input[type="number"], input:not([type]), select, textarea {
+    border: 1px solid var(--us-separator);
+    border-radius: var(--us-radius-small);
+    background-color: var(--us-surface);
+    color: var(--us-label);
+    padding: 3px 7px;
+    font-size: 13px;
+    min-height: 26px;
+    transition: border-color var(--us-press), box-shadow var(--us-press);
+}
+
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 24px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" fill="none" stroke="%236e6e73" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    background-size: 12px 12px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--us-accent);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.22);
+}
+
+input:disabled, select:disabled { background-color: var(--us-bg); color: var(--us-secondary); }
+
+input[type="checkbox"], input[type="radio"] {
+    accent-color: var(--us-accent);
+    vertical-align: middle;
+}
+@media (pointer: fine) {
+    /* À la souris seulement : au doigt, touch.css impose 24 px avec une marge (zone de 44 px) */
+    input[type="checkbox"], input[type="radio"] { width: 16px; height: 16px; }
+}
+
+/* Sélecteur de type d'élément : pastille teintée selon le niveau (couleurs d'origine adoucies) */
+select[id^="HL_edit_"][id$="_type"] {
+    font-weight: 600;
+    border-color: transparent;
+    background-color: var(--us-fill) !important;
+}
+select[id^="HL_edit_"][id$="_type"][style*="#FFD580"] { background-color: var(--us-orange-tint) !important; color: #8a3a00; }
+select[id^="HL_edit_"][id$="_type"][style*="#FFFFE0"] { background-color: var(--us-yellow-tint) !important; color: #6b5000; }
+select[id^="HL_edit_"][id$="_type"][style*="lightgreen"] { background-color: var(--us-green-tint) !important; color: var(--us-green); }
+input[id^="HL_edit_"][id$="_naam"][style*="background-color"] { background-color: var(--us-surface) !important; }
+
+/* ---------- Boutons ---------- */
+
+button:not([class]), input[type="button"], input[type="submit"] {
+    border: 0;
+    border-radius: var(--us-radius-small);
+    background: var(--us-fill);
+    color: var(--us-accent);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 12px;
+    min-height: 28px;
+    transition: background-color var(--us-press), transform var(--us-press);
+}
+@media (hover: hover) and (pointer: fine) {
+    button:not([class]):hover, input[type="button"]:hover, input[type="submit"]:hover { background: var(--us-fill-strong); }
+}
+button:not([class]):active, input[type="button"]:active, input[type="submit"]:active { transform: scale(0.97); }
+button:disabled { color: var(--us-secondary); opacity: 0.6; }
+button#btn_sitplan_delpage { background: var(--us-red-tint) !important; color: var(--us-red); }
+
+.rounded-button {
+    border-radius: 10px;
+    background-color: var(--us-accent);
+    font-weight: 600;
+    font-size: 15px;
+    padding: 9px 18px;
+    width: auto;
+    min-width: 100px;
+    transition: transform var(--us-press), filter var(--us-press);
+}
+.rounded-button:hover { background-color: var(--us-accent); }
+@media (hover: hover) and (pointer: fine) { .rounded-button:hover { filter: brightness(1.08); } }
+.rounded-button:active { transform: scale(0.97); }
+
+/* Boutons de l'arborescence : carrés arrondis teintés, icônes au trait */
+.button-insertBefore, .button-insertAfter, .button-insertChild, .button-delete, .button-delete-garbage-can {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 8px;
+    background-color: var(--us-accent-tint);
+    background-size: 18px 18px;
+    margin-right: 3px;
+    transition: transform var(--us-press), background-color var(--us-press);
+}
+.button-insertBefore { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23007aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16V4M5 9l5-5 5 5"/></svg>'); }
+.button-insertAfter  { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23007aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4v12M5 11l5 5 5-5"/></svg>'); }
+.button-insertChild  { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23007aff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4v6a2 2 0 0 0 2 2h9M12 8l4 4-4 4"/></svg>'); }
+.button-delete, .button-delete-garbage-can {
+    background-color: var(--us-red-tint);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%23ff3b30" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 6h13M8.5 3h3M5 6l1 11h8l1-11M8.5 9v5M11.5 9v5"/></svg>');
+}
+.button-insertBefore:active, .button-insertAfter:active, .button-insertChild:active,
+.button-delete:active, .button-delete-garbage-can:active { transform: scale(0.92); }
+.button-lightblue { border: 0; border-radius: 8px; background-color: var(--us-accent-tint); color: var(--us-accent); font-weight: 600; }
+
+/* Doigt : boutons de l'arborescence à 40 px (au lieu des 44 px génériques de touch.css), pour garder
+   l'arborescence lisible ; l'espacement de 4 px évite les appuis à côté. */
+@media (pointer: coarse) {
+    .button-insertBefore, .button-insertAfter, .button-insertChild, .button-delete, .button-delete-garbage-can {
+        min-width: 40px !important;
+        min-height: 40px !important;
+        width: 40px;
+        height: 40px;
+        margin-right: 4px;
+        background-size: 20px 20px;
+    }
+    #right_col_inner > button[class^="button-"] { width: 28px !important; height: 28px !important; min-width: 0 !important; min-height: 0 !important; background-size: 18px 18px; }
+}
+
+/* La légende sous le dessin réutilise ces boutons : on les garde alignés et non cliquables */
+#right_col_inner > button[class^="button-"] { pointer-events: none; vertical-align: middle; margin: 3px 8px 3px 0; }
+
+/* ---------- Schéma unifilaire : deux colonnes ---------- */
+
+#canvas_2col { background-color: var(--us-bg); }
+#left_col, #right_col { background-color: var(--us-bg); }
+#left_col_inner { padding: 12px 10px 24px 12px; color: var(--us-label); }
+#right_col_inner {
+    margin: 12px 12px 24px 6px;
+    padding: 14px 16px;
+    background: var(--us-surface);
+    border-radius: var(--us-radius);
+    box-shadow: var(--us-shadow);
+    color: var(--us-label);
+}
+#right_col_inner h2 { font-size: 15px; margin: 16px 0 8px; }
+
+/* Arborescence : chaque élément de premier niveau est une carte ; les niveaux inférieurs sont reliés
+   par un trait fin, à la manière des listes hiérarchiques de Finder / Fichiers. */
+#left_col_inner > table.html_edit_table {
+    width: 100%;
+    border-collapse: separate;
+    background: var(--us-surface);
+    border-radius: var(--us-radius);
+    box-shadow: var(--us-shadow);
+    margin: 0 0 10px;
+    padding: 6px 6px 2px 2px;
+}
+
+table.html_edit_table table.html_edit_table {
+    width: 100%;
+    border-collapse: separate;
+    margin: 4px 0 2px;
+}
+
+table.html_edit_table > tbody > tr > td:first-child {
+    width: 22px;
+    min-width: 22px;
+    padding: 4px 0 0;
+    color: var(--us-secondary);
+    font-size: 15px;
+    line-height: 1;
+    text-align: center;
+    vertical-align: top;
+    border-radius: 6px;
+    background-color: transparent;
+    background-image: linear-gradient(var(--us-separator), var(--us-separator));
+    background-repeat: no-repeat;
+    background-position: center 24px;
+    background-size: 1.5px calc(100% - 28px);
+    transition: background-color var(--us-press);
+}
+@media (hover: hover) and (pointer: fine) {
+    table.html_edit_table > tbody > tr > td:first-child:hover { background-color: var(--us-fill); }
+}
+table.html_edit_table > tbody > tr > td:nth-child(2) {
+    padding: 2px 2px 2px 6px;
+    line-height: 2.1;
+    font-size: 13px;
+}
+
+/* Avertissements de dessin de l'app : encart sobre */
+.EDS-tekenfout {
+    border: 0;
+    border-radius: 10px;
+    background: var(--us-yellow-tint);
+    color: #6b5000;
+    padding: 8px 10px;
+}
+
+/* ---------- Plan de position ---------- */
+
+#outerdiv, #canvas { background-color: var(--us-bg); }
+#paper {
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.box.selected { border-color: var(--us-accent); }
+.box.selected[movable="false"] { border-color: var(--us-red); }
+
+/* ---------- Pages de configuration (Nouveau, Fichier, Imprimer, Documentation…) ---------- */
+
+#configsection {
+    background-color: var(--us-bg);
+    padding: 16px;
+    color: var(--us-label);
+}
+
+#configsection table[border][width="100%"] {
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border: 0;
+    background: var(--us-surface);
+    border-radius: var(--us-radius);
+    box-shadow: var(--us-shadow);
+    overflow: hidden;
+}
+#configsection table[border][width="100%"] td, #configsection table[border][width="100%"] th {
+    border: 0;
+    border-left: 1px solid var(--us-separator);
+    padding: 10px 12px;
+}
+#configsection table[border][width="100%"] tr > :first-child { border-left: 0; }
+#configsection table[border][width="100%"] td[bgcolor] {
+    background: transparent;
+    border-bottom: 1px solid var(--us-separator);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* ---------- Fenêtres et menus ---------- */
+
+.popup-overlay {
+    background-color: rgba(0, 0, 0, 0.28);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+.popup {
+    border: 0;
+    border-radius: 14px;
+    padding: 18px 22px 20px;
+    box-shadow: var(--us-shadow-raised);
+    color: var(--us-label);
+    max-width: min(560px, calc(100vw - 32px));
+}
+.popup h3 { color: var(--us-label); margin-top: 4px; }
+
+.context-menu {
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgba(246, 246, 248, 0.86);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+    box-shadow: var(--us-shadow-raised);
+    font-size: 13px;
+    min-width: 200px;
+}
+.context-menu-item { border-radius: 6px; padding: 6px 10px; color: var(--us-label); }
+@media (hover: hover) and (pointer: fine) {
+    .context-menu-item:hover { background-color: var(--us-accent); color: #fff; }
+    .context-menu-item:hover .context-menu-shortcut { color: rgba(255, 255, 255, 0.8); }
+}
+.context-menu-shortcut { color: var(--us-secondary); }
+.context-menu-separator { border-top: 1px solid var(--us-separator); margin: 4px 6px; }
+
+/* Accessibilité : contraste renforcé et transparence réduite si demandés par le système */
+@media (prefers-reduced-transparency: reduce) {
+    #topmenu, #ribbon, #left-icons, #right-icons, .context-menu { background-color: #f9f9fb; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+    :root { --us-separator: rgba(60, 60, 67, 0.45); --us-secondary: #3c3c43; }
+}

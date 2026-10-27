@@ -4,6 +4,10 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+### Modifié (design)
+- Thème inspiré d'iPadOS/macOS (`src/theme/apple.css`, en surcouche, styles d'origine intacts) : police système, fond groupé, cartes blanches, onglets en contrôle segmenté, barres translucides, icônes au trait monochromes (remplacent émojis et PNG), boutons de l'arborescence teintés, pastilles d'état d'enregistrement, champs et listes arrondis, fenêtres et menu contextuel façon macOS ; transparence et contraste adaptés aux réglages d'accessibilité.
+- Sélecteur FR/NL au même style que les onglets. Captures dans `docs/captures/`.
+
 ### Ajouté (interface LLM)
 - API `window.UniSchema` (`src/llm/`) : lire, décrire, ajouter, modifier, déplacer, supprimer, annuler, importer/exporter `.eds`, rendu SVG — via les fonctions et contrôles de l'app ; descriptions françaises des 62 propriétés.
 - Serveur MCP `tools/mcp/` (16 outils) pour Claude Code / Claude Desktop sur des fichiers `.eds` ; test client MCP de bout en bout.

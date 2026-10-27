@@ -3,34 +3,38 @@
 .i18n-switch {
     position: fixed;
     top: calc(4px + env(safe-area-inset-top));
-    right: calc(8px + env(safe-area-inset-right));
+    right: calc(10px + env(safe-area-inset-right));
     z-index: 2147483646; /* au-dessus des fenêtres de l'app, sous le bandeau de mise à jour */
     pointer-events: auto; /* Dialog.ts désactive les clics sur le body pendant une fenêtre */
     display: flex;
-    border: 1px solid #c8c8c8;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #ffffff;
+    gap: 2px;
+    height: 32px;
+    padding: 2px;
+    border-radius: 9px;
+    background: var(--us-fill, rgba(118, 118, 128, 0.12));
 }
 
-.i18n-switch button {
+.i18n-switch button[data-lang] {
     border: 0;
-    padding: 2px 8px;
+    border-radius: 7px;
+    padding: 0 10px;
     background: transparent;
-    color: #555565;
-    font: 600 12px/1.6 system-ui, -apple-system, sans-serif;
+    color: var(--us-label, #1c1c1e);
+    font: 600 12px/1 -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+    letter-spacing: 0.02em;
     cursor: pointer;
     touch-action: manipulation;
+    transition: background-color 100ms ease-out;
 }
 
-.i18n-switch button[aria-pressed="true"] {
-    background: #1e3a5f;
-    color: #ffffff;
+.i18n-switch button[data-lang][aria-pressed="true"] {
+    background: var(--us-surface, #ffffff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
 }
 
 @media (pointer: coarse) {
-    .i18n-switch button {
+    .i18n-switch button[data-lang] {
         min-width: 44px;
-        min-height: 32px; /* la barre de menu est basse : 32 px + bordure, cible élargie par le padding */
+        min-height: 0; /* la barre fait 40 px : le contrôle segmenté occupe toute sa hauteur utile */
     }
 }
