@@ -28,6 +28,7 @@ import { initPWA } from "./pwa";
 import { initTouchInput } from "./input";
 import { initI18n } from "./i18n";
 import { initFileLaunch } from "./pwa/fileLaunch";
+import { installLlmApi } from "./llm";
 
 declare const BUILD_DATE: string;
 console.log(BUILD_DATE);
@@ -851,7 +852,7 @@ const startupDone = (async () => {
 });
 
 // UniSchema : ouverture d'un .eds par double-clic, une fois l'autosave récupéré (sinon il écraserait le fichier)
-startupDone.then(() => initFileLaunch());
+startupDone.then(() => { initFileLaunch(); installLlmApi(); });
 
 
 

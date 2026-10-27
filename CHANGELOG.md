@@ -4,6 +4,11 @@ Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/). Versions : [S
 
 ## [Non publié]
 
+### Ajouté (interface LLM)
+- API `window.UniSchema` (`src/llm/`) : lire, décrire, ajouter, modifier, déplacer, supprimer, annuler, importer/exporter `.eds`, rendu SVG — via les fonctions et contrôles de l'app ; descriptions françaises des 62 propriétés.
+- Serveur MCP `tools/mcp/` (16 outils) pour Claude Code / Claude Desktop sur des fichiers `.eds` ; test client MCP de bout en bout.
+- Documentation `docs/LLM.md`.
+
 ### Ajouté (phase 4 — interface en français)
 - Couche de traduction à l'affichage (`src/i18n/`) : les textes néerlandais d'origine servent de clés, le code d'origine et les valeurs des `.eds` ne changent pas (fichiers identiques FR/NL, vérifié).
 - Dictionnaire `src/i18n/fr.json` (421 textes, 10 motifs) construit par `tools/i18n/build_fr.py` à partir d'un relevé de tous les écrans, des 48 types d'éléments et de toutes les protections.
