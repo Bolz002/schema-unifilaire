@@ -2,6 +2,8 @@
 
 **App en ligne : https://bolz002.github.io/schema-unifilaire/** — installation : [Android](docs/INSTALL_ANDROID.md), [PC](docs/INSTALL_PC.md), iPad (Safari → Partager → Sur l'écran d'accueil). LLM : [docs/LLM.md](docs/LLM.md).
 
+**Tutoriel iPad + dessiner une maison : [docs/TUTO_MAISON.md](docs/TUTO_MAISON.md)**
+
 Fork de [igoethal/eendraadschema](https://github.com/igoethal/eendraadschema) (© Ivan Goethals, GPLv3), modifié par Quentin Bolsée en 2026. Objectif : une PWA en français, utilisable hors ligne sur iPad. Le néerlandais reste disponible.
 
 ## Développement
