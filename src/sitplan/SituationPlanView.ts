@@ -11,6 +11,7 @@ import { EventManager } from "../EventManager";
 import { showSelectPopup, htmlspecialchars } from "../general";
 import { getXYRectangleSize } from "./GeometricFunctions";
 import { HelperTip } from "../documentation/HelperTip";
+import { getSituationPlanManualUrl } from "../documentation/manuals";
 import { Dialog } from "../documentation/Dialog";
 import { SituationPlanView_ElementPropertiesPopup } from "./SituationPlanView_ElementPropertiesPopup";
 import { SituationPlanView_MultiElementPropertiesPopup } from "./SituationPlanView_MultiElementPropertiesPopup";
@@ -1750,6 +1751,6 @@ export function showSituationPlanPage() {
         `<h3>Situatieschema tekenen</h3>
     <p>Op deze pagina kan u een situatieschema tekenen.</p>
     <p>Laad een plattegrond met de knop "Uit bestand" en voeg symbolen toe met de knop "Uit schema".</p>
-    <p>Klik <a href="Documentation/sitplandoc.pdf" target="_blank" rel="noopener noreferrer">hier</a> om in een nieuw venster de documentatie te bekijken.</p>
+    <p>Klik <a href="${getSituationPlanManualUrl()}" target="_blank" rel="noopener noreferrer">hier</a> om in een nieuw venster de documentatie te bekijken.</p>
     <p>We werken elke dag om dit programma beter te maken. Opmerkingen en ideeën zijn welkom in het "contact"-formulier.</p>`);
 }

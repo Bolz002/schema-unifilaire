@@ -26,7 +26,7 @@ Test : mode Avion, fermer l'app (balayer vers le haut), la rouvrir. Elle doit s'
 
 | Zone | Rôle |
 |---|---|
-| **Onglets** en haut | Nouveau · Fichier · Schéma unifilaire · Plan de position · Imprimer · Documentation |
+| **Onglets** en haut | Nouveau · Fichier · Schéma unifilaire · Plan de position · Imprimer · Aide |
 | **i** et **FR / NL** | À propos de l'app · langue |
 | **Barre d'outils** | Défaire / Refaire · mode de travail · état de l'enregistrement |
 | **Colonne de gauche** | L'arborescence : chaque ligne est un élément (raccordement, tableau, circuit, point…) avec ses propriétés |

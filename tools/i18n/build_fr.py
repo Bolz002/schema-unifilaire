@@ -49,7 +49,7 @@ TRADUCTIONS = {
     88: "Ne plus afficher ce texte dans ce navigateur.", 89: "Congélateur",
     91: "Nouvelle fonction pour dessiner dans le plan de position des éléments absents du schéma unifilaire. Pour l'instant, seul un nombre limité de symboles est pris en charge ; la liste sera étendue.",
     92: "Version autonome (développement) dont certaines fonctions sont désactivées.",
-    93: "Documentation", 94: "Domotique", 95: "Récepteur piloté par domotique", 96: "Module domotique (vertical)",
+    93: "Aide", 94: "Domotique", 95: "Récepteur piloté par domotique", 96: "Module domotique (vertical)",
     97: "Sans fil :", 98: "Sèche-linge", 99: "Bouton-poussoir", 100: "Borne de recharge VE", 101: "Une création de",
     102: "Un manuel complet est disponible au format PDF (en néerlandais). Cliquez à gauche pour l'ouvrir dans une autre fenêtre.",
     103: "Dessiner un schéma unifilaire.", 104: "Schéma unifilaire en ligne",

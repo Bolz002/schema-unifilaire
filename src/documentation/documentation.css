@@ -1,0 +1,21 @@
+/* Help uses the existing UniSchema theme and stays separate from the editor. */
+.help-page { max-width: 1060px; margin: 0 auto; padding: 8px 0 24px; }
+.help-page h1 { font-size: 28px; margin: 8px 0 12px; }
+.help-intro { max-width: 72ch; color: var(--us-secondary); margin-bottom: 24px; }
+.help-guides { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+.help-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border-radius: var(--us-radius); background: var(--us-surface); box-shadow: var(--us-shadow); }
+.help-card h2 { margin: 4px 0 8px; }
+.help-card p { margin: 0 0 16px; }
+.help-card .help-meta { margin: 0 0 8px; color: var(--us-secondary); font-size: 12px; }
+.help-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; box-sizing: border-box; margin-top: auto; padding: 12px 14px; border-radius: var(--us-radius-small); background: var(--us-accent-tint); color: var(--us-accent); font-weight: 600; line-height: 1.4; text-decoration: none; }
+.help-link:hover { background: var(--us-fill-strong); }
+.help-link:focus-visible, .help-originals a:focus-visible, .help-originals summary:focus-visible { outline: 2px solid var(--us-accent); outline-offset: 3px; }
+.help-format { flex: 0 0 auto; font-size: 11px; font-weight: 500; }
+.help-note { color: var(--us-secondary); font-size: 13px; max-width: 90ch; margin: 24px 0 16px; }
+.help-originals { padding: 12px 0; border-top: 1px solid var(--us-separator); }
+.help-originals summary { cursor: pointer; padding: 10px 0; }
+.help-originals a { display: inline-block; padding: 12px 0; }
+@media (max-width: 480px) {
+    .help-page h1 { font-size: 24px; }
+    .help-card { padding: 18px; }
+}
